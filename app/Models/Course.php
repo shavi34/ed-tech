@@ -12,4 +12,14 @@ class Course extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+    public function teachers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'course_teacher', 'course_id', 'teacher_id');
+    }
+
+
+    public function students():HasMany
+    {
+       return $this->hasMany(Student::class);
+    }
 }
