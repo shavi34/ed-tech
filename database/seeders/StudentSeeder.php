@@ -15,19 +15,19 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
+        if (!User::where('email', 'student@test.com')->exists()) {
+            $student = User::factory(
+                [
+                    'name' => 'Test Student',
+                    'email' => 'student@test.com',
+                    'role_id' => UserRole::STUDENT,
+                ]
+            )->create();
 
-       $student = User::factory(
-            [
-                'name' => 'Test Student',
-                'email' => 'student @test.com',
-                'role_id' => UserRole::STUDENT,
-            ]
-        )->create();
-
+            Student::factory([
+                'user_id' => $student->id,
+            ])->create();
+        }
         Student::factory(10)->create();
-
-        Student::factory([
-            'user_id' => $student->id,
-        ])->create();
     }
 }

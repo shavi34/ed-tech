@@ -22,21 +22,21 @@ class UserSeeder extends Seeder
 
     public function run(): void
     {
-        User::factory(5)->create()->each(fn ($teacher) =>
-            $teacher->classes()->attach($this->getCourses())
+        User::factory(5)->create()->each(fn($teacher) => $teacher->classes()->attach($this->getCourses())
         );
 
-        $teacher = User::factory([
-            'name' => 'Test Teacher',
-            'email' => 'teacher@test.com',
-            'role_id' => UserRole::TEACHER,
-        ])->create();
-
-        $teacher->classes()->attach($this->getCourses());
+        if (!User::where('email', 'teacher@test.com')->exists()) {
+            $teacher = User::factory([
+                'name' => 'Test Teacher',
+                'email' => 'teacher@test.com',
+                'role_id' => UserRole::TEACHER,
+            ])->create();
+            $teacher->classes()->attach($this->getCourses());
+        }
     }
 
     private function getCourses()
     {
-        return Course::inRandomOrder()->limit(rand(2, 5))->pluck('id')->toArray();
+        return Course::inRandomOrder()->limit(rand(15, 25))->pluck('id')->toArray();
     }
 }

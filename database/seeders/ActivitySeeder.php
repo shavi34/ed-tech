@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Enum\UserRole;
 use App\Models\Activity;
+use App\Models\Student;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +16,6 @@ class ActivitySeeder extends Seeder
      */
     public function run(): void
     {
-        Activity::factory(10)->create();
+        Activity::factory(70)->create();
     }
 }
