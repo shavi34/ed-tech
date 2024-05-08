@@ -3,12 +3,11 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
-use Illuminate\Support\Facades\Route;
 use App\Models\Course;
+use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-
 
 Route::middleware(['auth:sanctum'])->group(function (): void {
     Route::get('/user', [AuthController::class, 'show']);

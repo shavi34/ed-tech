@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 
 class StudentController extends Controller
 {
-
     /**
      * Display the specified resource.
      * #
@@ -21,7 +20,7 @@ class StudentController extends Controller
 
         return response()->json([
             'message' => 'Student details',
-            'data' => new StudentResource($student)
+            'data' => new StudentResource($student),
         ]);
     }
 }

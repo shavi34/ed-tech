@@ -9,7 +9,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
 class CourseController extends Controller
 {
@@ -33,7 +32,7 @@ class CourseController extends Controller
 
         return response()->json([
             'message' => 'Class details',
-            'data' => new CourseResource($class)
+            'data' => new CourseResource($class),
         ]);
     }
 
@@ -44,5 +43,4 @@ class CourseController extends Controller
         return StudentResource::collection($class->students()
             ->paginate($request->get('page_size', 10)));
     }
-
 }

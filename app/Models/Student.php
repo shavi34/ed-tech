@@ -15,29 +15,28 @@ class Student extends Model
         'address',
         'grade',
         'user_id',
-        'course_id'
+        'course_id',
     ];
 
     protected $appends = ['name'];
 
-    public function user():BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function activities():HasMany
+    public function activities(): HasMany
     {
-        return  $this->hasMany(Activity::class)->orderByDesc('score');
+        return $this->hasMany(Activity::class)->orderByDesc('score');
     }
 
-    public function course():BelongsTo
+    public function course(): BelongsTo
     {
-        return  $this->belongsTo(Course::class, 'course_id');
+        return $this->belongsTo(Course::class, 'course_id');
     }
 
-    public function getNameAttribute():string
+    public function getNameAttribute(): string
     {
-       return $this->user->name;
+        return $this->user->name;
     }
 }
-

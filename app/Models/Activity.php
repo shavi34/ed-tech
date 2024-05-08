@@ -14,5 +14,4 @@ class Activity extends Model
         'score',
         'student_id',
     ];
-
 }

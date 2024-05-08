@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Enum\UserRole;
 use App\Models\Course;
-use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,6 +20,7 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         $student = User::factory(['role_id' => UserRole::STUDENT->value])->create();
+
         return [
             'address' => fake()->address(),
             'grade' => fake()->numberBetween(1, 100),

@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Enum\UserRole;
 use App\Models\Course;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -22,10 +21,10 @@ class UserSeeder extends Seeder
 
     public function run(): void
     {
-        User::factory(5)->create()->each(fn($teacher) => $teacher->classes()->attach($this->getCourses())
+        User::factory(5)->create()->each(fn ($teacher) => $teacher->classes()->attach($this->getCourses())
         );
 
-        if (!User::where('email', 'teacher@test.com')->exists()) {
+        if (! User::where('email', 'teacher@test.com')->exists()) {
             $teacher = User::factory([
                 'name' => 'Test Teacher',
                 'email' => 'teacher@test.com',

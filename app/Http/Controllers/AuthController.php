@@ -13,13 +13,12 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class AuthController extends Controller
 {
-
     public function register(AuthRegisterRequest $request): JsonResponse
     {
         $user = User::create($request->validated());
 
         return response()->json([
-            'message' => "User created successfully",
+            'message' => 'User created successfully',
             'data' => $user,
         ], ResponseAlias::HTTP_CREATED);
 
@@ -31,14 +30,14 @@ class AuthController extends Controller
         if ($user && Hash::check($request->get('password'), $user->password)) {
 
             return response()->json([
-                'message' => "User Login successfully",
+                'message' => 'User Login successfully',
                 'data' => new UserResource($user),
                 'token' => $user->createToken('auth_token')->plainTextToken,
             ]);
         }
 
         return response()->json([
-            'message' => "Not Found",
+            'message' => 'Not Found',
         ], ResponseAlias::HTTP_UNAUTHORIZED);
     }
 
@@ -52,7 +51,7 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
 
         return response()->json([
-            'message' => "Token deleted successfully"
+            'message' => 'Token deleted successfully',
         ]);
     }
 }
