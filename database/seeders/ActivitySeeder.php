@@ -18,6 +18,11 @@ class ActivitySeeder extends Seeder
 
         $teacherClasses = User::where('email', 'teacher@test.com')->first()->classes->pluck('id');
 
+        $user = User::where('email', 'student@test.com')->first();
+        if ($user->student) {
+            Activity::factory(['student_id' => $user->student->id])->count(rand(2, 10))->create();
+        }
+
         Student::whereIn('course_id', $teacherClasses)->get()
             ->each(fn ($student) => $student->activities()
                 ->createMany(
