@@ -26,4 +26,13 @@ class AuthLoginRequest extends FormRequest
             'password' => 'required|min:6',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'email.exists' => 'The email does not exist or password is wrong',
+            'password.min' => 'The password must be at least 6 characters',
+        ];
+    }
+
 }
