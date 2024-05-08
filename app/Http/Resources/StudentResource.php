@@ -22,6 +22,7 @@ class StudentResource extends JsonResource
             'grade' => $this->grade,
             'name' => $this->name,
             'activity_count' => $this->activities()->count(),
+            'class_name' => $this->course->name,
             'activities' => ActivityResource::collection($this->activities),
         ];
     }

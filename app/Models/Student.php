@@ -27,7 +27,12 @@ class Student extends Model
 
     public function activities():HasMany
     {
-        return  $this->hasMany(Activity::class);
+        return  $this->hasMany(Activity::class)->orderByDesc('score');
+    }
+
+    public function course():BelongsTo
+    {
+        return  $this->belongsTo(Course::class, 'course_id');
     }
 
     public function getNameAttribute():string
