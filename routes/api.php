@@ -11,6 +11,8 @@ Route::post('/register', [AuthController::class, 'register']);
 
 
 Route::middleware(['auth:sanctum'])->group(function (): void {
+    Route::get('/user', [AuthController::class, 'show']);
+    Route::get('/logout', [AuthController::class, 'revokeTokens']);
     Route::resource('/classes', CourseController::class)->only(['index', 'show']);
     Route::resource('/student', StudentController::class)->only(['show']);
 });
