@@ -54,7 +54,6 @@ test('Student can not access class endpoints', function () {
 });
 
 test('Student can see their activities', function () {
-
     Activity::factory(['student_id' => $this->student->id])->create();
     Sanctum::actingAs($this->student->user);
     $this->getJson(route('students.show', $this->student->id))

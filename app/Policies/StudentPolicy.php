@@ -13,7 +13,8 @@ class StudentPolicy
      */
     public function show(User $user, Student $student)
     {
-        return ($user->role_id === UserRole::TEACHER->value) ||
+
+        return ($user->role_id === UserRole::TEACHER->value && $student->course->teachers->contains($user->id)) ||
             ($user->role_id === UserRole::STUDENT->value && $student->user_id === $user->id);
     }
 }
